@@ -3,10 +3,14 @@ import time
 import subprocess
 import requests
 import platform
+import os
 from datetime import datetime
+from dotenv import load_dotenv
 
-TOKEN = "ВАШ_TELEGRAM_TOKEN"
-CHAT_ID = "ВАШ_CHAT_ID"
+load_dotenv()
+
+TOKEN = os.getenv("TELEGRAM_TOKEN", "ВАШ_TELEGRAM_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "ВАШ_CHAT_ID")
 CHECK_INTERVAL = 300   # 5 минут (можно поменять на 5-10 секунд для демонстрации)
 LOG_FILE = "alerts.log"
 

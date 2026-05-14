@@ -1,8 +1,12 @@
 {
   "devices": [
-    {"name": "sw1", "ip": "192.168.1.10"},
-    {"name": "r1",  "ip": "192.168.1.1"},
-    {"name": "fw1", "ip": "192.168.1.254"},
-    {"name": "google_dns", "ip": "8.8.8.8"}
+    {
+      "name": "my phone",
+      "ip": "[IP_ADDRESS]"
+    },
+    {
+      "name": "my pc",
+      "ip": "[IP_ADDRESS]"
+    }
   ]
 }
