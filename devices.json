@@ -2,11 +2,11 @@
   "devices": [
     {
       "name": "my phone",
-      "ip": "[IP_ADDRESS]"
+      "ip": "192.168.0.18"
     },
     {
       "name": "my pc",
-      "ip": "[IP_ADDRESS]"
+      "ip": "127.0.0.1"
     }
   ]
 }

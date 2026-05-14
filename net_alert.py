@@ -4,15 +4,20 @@ import subprocess
 import requests
 import platform
 import os
+import sys
 from datetime import datetime
 from dotenv import load_dotenv
 
-load_dotenv()
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 TOKEN = os.getenv("TELEGRAM_TOKEN", "ВАШ_TELEGRAM_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "ВАШ_CHAT_ID")
-CHECK_INTERVAL = 300   # 5 минут (можно поменять на 5-10 секунд для демонстрации)
-LOG_FILE = "alerts.log"
+CHECK_INTERVAL = 5   # 5 секунд для быстрой демонстрации
+LOG_FILE = os.path.join(BASE_DIR, "alerts.log")
 
 def send_telegram(message):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
@@ -39,8 +44,9 @@ def log_event(text):
         f.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} — {text}\n")
 
 def load_devices():
+    devices_path = os.path.join(BASE_DIR, "devices.json")
     try:
-        with open("devices.json", "r", encoding="utf-8") as f:
+        with open(devices_path, "r", encoding="utf-8") as f:
             return json.load(f)["devices"]
     except FileNotFoundError:
         print("Файл devices.json не найден!")
